@@ -1,6 +1,32 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>ChocoPy: A Language for Compilers Education</title>
+    <script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+	<script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+	<style>
+		.compile-editor { 
+		  border: 1px solid black;
+		  width: 50em;
+		  height: 20em;
+		}
+
+		.compile-button {
+			border: 1px solid black;
+			margin-bottom: 5px;
+			padding: 5px;
+			background: #BBBBFF;
+			font-weight: bold;
+		}
+
+		.compile-error-marker {
+			position: absolute;
+			border-bottom: 2px dotted red;
+		}
+	</style>
   </head>
   <body>
     <h1>ChocoPy</h1>
@@ -8,6 +34,90 @@
     <p>ChocoPy is a language designed for teaching compilers courses at an undergraduate level. ChocoPy is used to teach <a href="https://sites.google.com/site/cs164fall2018">CS 164 at UC Berkeley</a>.</p>
 
     <p>This website is currently under construction.</p>
+
+    <h2>Try ChocoPy</h2>
+
+<button id="tryit-compile" class="compile-button">Compile to RISC-V</button>
+	<div id="tryit-editor" class="compile-editor"># Compute Factorial
+def factorial(n:int) -> int:
+  if n <= 1:
+    return 1
+  else:
+    return n * factorial(n - 1)
+
+print(factorial(5))
+</div>
+
+<script>
+	var compileService = "http://localhost:8080/compile_service_war_exploded/compile";
+	var Range = require('ace/range').Range;
+
+	function makeEditor(x) {
+		var editorElem = x + "-editor";
+		var buttonElem = x + "-compile";
+	    var editor = ace.edit(editorElem, {
+	    	theme: "ace/theme/github",
+	        mode: "ace/mode/python",
+	    });
+
+
+	    var errorMarkers = []
+
+
+	    editor.on('change', () => {
+	    	editor.session.clearAnnotations();
+	    	for (var marker of errorMarkers) {
+	    		editor.session.removeMarker(marker);
+	    	}
+	    	errorMarkers.length = 0;
+	    });
+
+	    $("#"+buttonElem).click(() => {
+	    	var code = editor.getValue();
+	    	var resultWindow = window.open('venus.html' , '_blank');
+	    	if (resultWindow == null) {
+	    		console.error("Could not open new window...");
+	    		return; // Cannot show result
+	    	}
+	    	
+	    	$.post(compileService, {input: code}, (result) => {
+	    		if (result.asm) {
+	    			var asm = result.asm;
+					resultWindow.onload = () => {
+						resultWindow.codeMirror.setValue("# Compiled ChocoPy Program in RISC-V assembly -- Run using the 'Simulator' tab above\n" + asm);
+					}
+	    		} else if (result.errors) {
+	    			resultWindow.close();
+	    			var annotations = []
+
+	    			for (var error of result.errors) {
+	    				var loc = error.location;
+	    				var msg = error.message;
+	    				var startLine = loc[0] - 1;
+	    				var startCol = loc[1] - 1;
+	    				var endLine = loc[2] - 1;
+	    				var endCol = loc[3] - 1;
+	    				var range = new Range(startLine, startCol, endLine, endCol+1);
+	    				errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", false));
+
+	    				annotations.push({
+	    					row: startLine,
+	    					text: msg,
+	    					type: "error"
+	    				});
+	    			}
+
+	    			editor.session.setAnnotations(annotations);
+	    		} else {
+	    			resultWindow.close();
+	    			console.error(result);
+	    		}
+	    	}, "json").fail(() => resultWindow.close());
+	    })
+	}
+
+	makeEditor("tryit")
+</script>
 
   </body>
 </html>
