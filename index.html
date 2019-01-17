@@ -49,7 +49,9 @@ print(factorial(5))
 </div>
 
 <script>
-	var compileService = "http://localhost:8080/compile_service_war_exploded/compile";
+	var baseUrl = "https://lobpsxdn4g.execute-api.us-east-2.amazonaws.com"
+	var stage = "";
+	var compileService = baseUrl + "/" + stage + "/compile";
 	var Range = require('ace/range').Range;
 
 	function makeEditor(x) {
@@ -79,40 +81,53 @@ print(factorial(5))
 	    		console.error("Could not open new window...");
 	    		return; // Cannot show result
 	    	}
+	    	resultWindow.onload = () => resultWindow.codeMirror.setValue("# Compiling...");
 	    	
-	    	$.post(compileService, {input: code}, (result) => {
-	    		if (result.asm) {
-	    			var asm = result.asm;
-					resultWindow.onload = () => {
-						resultWindow.codeMirror.setValue("# Compiled ChocoPy Program in RISC-V assembly -- Run using the 'Simulator' tab above\n" + asm);
-					}
-	    		} else if (result.errors) {
-	    			resultWindow.close();
-	    			var annotations = []
+	    	$.ajax({
+	    		url: compileService, 
+	    		type: "POST",
+  				contentType: "application/json; charset=utf-8",
+  				dataType: "json",
+	    		data: JSON.stringify({input: code}), 
+	    		success: function(result) {
+		    		if (result.asm) {
+		    			var asm = result.asm;
+		    			console.log(resultWindow.codeMirror);
+						//resultWindow.onload = () => {
+							resultWindow.codeMirror.setValue("# Compiled ChocoPy Program in RISC-V assembly -- Run using the 'Simulator' tab above\n" + asm);
+						//}
+		    		} else if (result.errors) {
+		    			resultWindow.close();
+		    			var annotations = []
 
-	    			for (var error of result.errors) {
-	    				var loc = error.location;
-	    				var msg = error.message;
-	    				var startLine = loc[0] - 1;
-	    				var startCol = loc[1] - 1;
-	    				var endLine = loc[2] - 1;
-	    				var endCol = loc[3] - 1;
-	    				var range = new Range(startLine, startCol, endLine, endCol+1);
-	    				errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", false));
+		    			for (var error of result.errors) {
+		    				var loc = error.location;
+		    				var msg = error.message;
+		    				var startLine = loc[0] - 1;
+		    				var startCol = loc[1] - 1;
+		    				var endLine = loc[2] - 1;
+		    				var endCol = loc[3] - 1;
+		    				var range = new Range(startLine, startCol, endLine, endCol+1);
+		    				errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", false));
 
-	    				annotations.push({
-	    					row: startLine,
-	    					text: msg,
-	    					type: "error"
-	    				});
-	    			}
+		    				annotations.push({
+		    					row: startLine,
+		    					text: msg,
+		    					type: "error"
+		    				});
+		    			}
 
-	    			editor.session.setAnnotations(annotations);
-	    		} else {
-	    			resultWindow.close();
-	    			console.error(result);
-	    		}
-	    	}, "json").fail(() => resultWindow.close());
+		    			editor.session.setAnnotations(annotations);
+		    		} else {
+		    			resultWindow.close();
+		    			console.error(result);
+		    		}
+		    	}, 
+		    	fail: () => {
+		    		resultWindow.close();
+		    		alert("Request to compile service failed :-(");
+		    	}
+	    	});
 	    })
 	}
 
