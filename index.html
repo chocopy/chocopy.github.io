@@ -18,7 +18,7 @@
 
 		.compile-error-marker {
 			position: absolute;
-			border-bottom: 2px dotted red;
+			background-color: rgba(255, 200, 200, 0.3);
 		}
 	</style>
   </head>
@@ -26,30 +26,29 @@
 
 <h1>ChocoPy</h1>
 
-<p>ChocoPy is a programming language designed for teaching compiler development at an undergraduate level. ChocoPy is used to teach <a target="_blank" href="https://sites.google.com/site/cs164fall2018/calendar-and-slides">CS 164 at UC Berkeley</a>. ChocoPy was created by <a target="_blank" href="https://people.eecs.berkeley.edu/~rohanpadhye/">Rohan Padhye</a> and <a target="_blank" href="https://people.eecs.berkeley.edu/~ksen">Koushik Sen</a>.</p>
+<p>ChocoPy is a programming language designed for teaching compiler development at an undergraduate level. ChocoPy is a restricted subset of <a target="_blank" href="https://www.python.org/downloads/release/python-360/">Python 3</a>, which can easily be compiled to a target such as <a target="_blank" href="https://riscv.org">RISC-V</a>. ChocoPy is <a target="_blank" href="chocopy_language_reference.pdf">fully specified</a> using formal grammar syntax, typing rules, and operational semantics. ChocoPy is used to teach <a target="_blank" href="https://sites.google.com/site/cs164fall2018/calendar-and-slides">CS 164 at UC Berkeley</a>. ChocoPy was created by <a target="_blank" href="https://people.eecs.berkeley.edu/~rohanpadhye/">Rohan Padhye</a> and <a target="_blank" href="https://people.eecs.berkeley.edu/~ksen">Koushik Sen</a>.</p>
 
 <p>At a glance, ChocoPy is:</p>
 
 <ul>
-	<li><strong>A subset of <a target="_blank" href="https://www.python.org/downloads/release/python-360/">Python 3</a></strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter.</li>
-	<li><strong>Statically typed</strong>: ChocoPy uses Python 3 <a target="_blank" href="https://www.python.org/dev/peps/pep-0484/">type annotations</a> and is designed to be easily compiled.</li>
-	<li><strong>Concise</strong>: A full compiler be implemented in about 12 weeks by undergraduate students of computer science. Doing so for a relatively familiar language can be a <a href="#testimonials">hugely rewarding exercise</a> for students.</li>
+	<li><strong>Familiar</strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter. ChocoPy programs can also be edited using standard Python syntax highlighting.</li>
+	<li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a target="_blank" href="https://www.python.org/dev/peps/pep-0484/">type</a> <a target="_blank" href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The type system supports nominal subtyping.</li>
+	<li><strong>Concise</strong>: A full compiler for ChocoPy be implemented in about 12 weeks by undergraduate students of computer science. This can be a <a href="#testimonials">hugely rewarding exercise</a> for the students.</li>
 	<li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">language features</a> also lead to interesting implications for compiler design.</li>
 </ul>
 
 <h2>Try It</h2>
 
-<pre class="example"># Naive primality check
-def is_prime(x:int) -> bool:
-    div:int = 2
-    while div < x:
-        if x % div == 0:
-            return False
-        div = div + 1
-    return True
+<pre class="example"># Search in a list
+def contains(items:[int], x:int) -> bool:
+    i:int = 0
+    while i < len(items):
+        if items[i] == x:
+            return True
+        i = i + 1
+    return False
 
-print(is_prime(23))
-print(is_prime(42))
+print(contains([4, 8, 15, 16, 23], 42)) # Prints "False"
 </pre>
 
 <h2 id="resources">Teaching Resources</h2>
@@ -168,6 +167,8 @@ for num in [4, 8, 15, 16, 23, 42]:
     
 </pre>
 
+<p>ChocoPy <em>does not support</em> modules and imports, higher order functions, native dictionaries, and exceptions.</p>
+
 
 <h2 id="testimonials">Testimonials</h2>
 
@@ -176,13 +177,13 @@ for num in [4, 8, 15, 16, 23, 42]:
 <blockquote>Chocopy was a very well done project and I think might have been one of the most
 satisfying CS course projects I have worked on in all of undergrad.</blockquote>
 
+<blockquote>[...] The projects in the class were extremely well organized and although very challenging, were certainly the most enjoyable to do in all the classes I've taken. Github classroom, maven, and other infrastructure made starting, testing and submitting very straightforward, and the tasks in the project itself as well as the related documentation made them very effective at teaching me language design and implementation.</blockquote>
+
 <blockquote>I'm a big fan of the ChocoPy projects. I thought it was really nice to implement a subset of a language that I am already fairly familiar with, so that I could focus my attention on the compilers concepts instead of struggling to understand language quirks. I really liked the amount of freedom for design decisions given in project 2. <br /><br /> The only minor negatives for my project experiences was that I didn't feel like we actually implemented much for project 1.</blockquote>
 
 <!-- <blockquote>I have really enjoyed the projects so far. Even though they take a long time, they have been a fun way to apply the course material and learn how compilers work. In both PA1 and PA2, it has been cool to see how implementing a set of comprehensive rules is powerful and general enough to handle the entire ChocoPy language. The projects are particularly interesting because they have been completely different from projects I have done in other CS courses.</blockquote> -->
 
 <blockquote>Great class, one of my favourites at Berkeley as a fourth year</blockquote>
-
-<blockquote>[...] The projects in the class were extremely well organized and although very challenging, were certainly the most enjoyable to do in all the classes I've taken. Github classroom, maven, and other infrastructure made starting, testing and submitting very straightforward, and the tasks in the project itself as well as the related documentation made them very effective at teaching me language design and implementation.</blockquote>
 
 <blockquote>[...] I really enjoyed the three programming assignments a lot; I think they were my favourite computer science class projects that I've completed at Berkeley.</blockquote>
 
@@ -252,7 +253,7 @@ satisfying CS course projects I have worked on in all of undergrad.</blockquote>
 		    				var endLine = loc[2] - 1;
 		    				var endCol = loc[3] - 1;
 		    				var range = new Range(startLine, startCol, endLine, endCol+1);
-		    				errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", false));
+		    				errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", true));
 
 		    				annotations.push({
 		    					row: Math.min(Math.max(0, startLine), editor.session.getLength()-1),
