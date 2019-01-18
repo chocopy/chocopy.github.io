@@ -39,14 +39,17 @@
 
 <h2>Try It</h2>
 
-<pre class="example"># Compute Factorial
-def factorial(n:int) -> int:
-  if n <= 1:
-    return 1
-  else:
-    return n * factorial(n - 1)
+<pre class="example"># Naive primality check
+def is_prime(x:int) -> bool:
+    div:int = 2
+    while div < x:
+        if x % div == 0:
+            return False
+        div = div + 1
+    return True
 
-print(factorial(5))
+print(is_prime(23))
+print(is_prime(42))
 </pre>
 
 <h2 id="resources">Teaching Resources</h2>
@@ -55,16 +58,16 @@ print(factorial(5))
 
 <ul>
 	<li>A <a target="_blank" href="chocopy_language_reference.pdf">language reference manual</a>, complete with formal grammar, typing rules, and operational semantics.</li>
-	<li>A Java-based <a target="_blank" href="chocopy-ref.jar">reference compiler</a> for compiling ChocoPy to (auto-commented) RISC-V assembly. The source code of the reference compiler can be made available for instructors.</li>
 	<li>A Java-based framework for conducting three Programming Assignments (PAs):
 		<ol>
-			<li>Lexing and Parsing using <a target="_blank" href="http://www.jflex.de">JFlex</a> and <a target="_blank" href="http://www2.cs.tum.edu/projects/cup">CUP</a>. </li>
-			<li>Semantic anaysis and type checking. </li>
-			<li>Code generation to <a target="_blank" href="https://riscv.org">RISC-V</a> assembly. </li>
+			<li><a target="_blank" href="https://github.com/cs164fall2018/pa1-chocopy-parser">PA1</a>: Lexing and Parsing using <a target="_blank" href="http://www.jflex.de">JFlex</a> and <a target="_blank" href="http://www2.cs.tum.edu/projects/cup">CUP</a>. </li>
+			<li><a target="_blank" href="https://github.com/cs164fall2018/pa2-chocopy-semantic-analysis">PA2</a>: Semantic anaysis and type checking. </li>
+			<li><a target="_blank" href="https://github.com/cs164fall2018/pa3-chocopy-code-generation">PA3</a>: Code generation to <a target="_blank" href="https://riscv.org">RISC-V</a> assembly. </li>
 		</ol>
 
-		The assignments use a JSON-based intermediate representation and include auto-grading support. </li>
-	<li>RISC-V programs are executed in a modified version of the <a target="_blank" href="https://github.com/chocopy/venus">Venus simulator</a>, which was also developed at UC Berkeley.</li>
+		The framework uses <a target="_blank" href="https://json.org/">JSON</a> as an intermediate representation for piping results between assignments / compiler stages. The packages include auto-grading support. All artifacts are platform independent and only require Java 8+ and Apache Maven.</li>
+	<li>A modified version of the <a target="_blank" href="https://github.com/chocopy/venus">Venus simulator</a> for executing RISC-V programs. Venus can be deployed to the web (for online debugging) or compiled to the JVM (for auto-grading).</li>
+	<li>A Java-based reference compiler for compiling ChocoPy programs to <em>automatically documented</em> RISC-V assembly. Students have access to a binary version of this compiler, for use in debugging their own assignments. The reference compiler also powers the online examples on this web page. The source code of the reference compiler <a href="#contact">can be made available to instructors</a>.</li>
 	</li>
 </ul>
 
@@ -75,7 +78,7 @@ print(factorial(5))
 <blockquote>Chocopy was a very well done project and I think might have been one of the most
 satisfying CS course projects I have worked on in all of undergrad.</blockquote>
 
-<blockquote>I'm a big fan of the ChocoPy projects. I thought it was really nice to implement a subset of a language that I am already fairly familiar with, so that I could focus my attention on the compilers concepts instead of struggling to understand language quirks. I really liked the amount of freedom for design decisions given in project 2. <br /><br /> The only minor negatives for my project experiences was that I didn't feel like we actually implemented much for project 1.</blockquote>
+<blockquote>I'm a big fan of the ChocoPy projects. I thought it was really nice to implement a subset of a language that I am already fairly familiar with, so that I could focus my attention on the compilers concepts instead of struggling to understand language quirks. I really liked the amount of freedom for design decisions given in project 2.</blockquote>
 
 <blockquote>Great class, one of my favourites at Berkeley as a fourth year</blockquote>
 
@@ -100,7 +103,7 @@ print(is_even("3"))   # FIXME
 <pre class="example"># Compute x**y
 def exp(x: int, y: int) -> int:
 	a: int = 0
-	global invocations
+	global invocations  # Count calls to this function
 
 	def f(i: int) -> int:
 		nonlocal a
