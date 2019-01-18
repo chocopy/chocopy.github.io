@@ -26,13 +26,13 @@
 
 <h1>ChocoPy</h1>
 
-<p>ChocoPy is a programming language designed to be used in compilers courses at an undergraduate level. ChocoPy is a restricted subset of <a target="_blank" href="https://www.python.org/downloads/release/python-360/">Python 3</a>, which can easily be compiled to a target such as <a target="_blank" href="https://riscv.org">RISC-V</a>. The language is <a target="_blank" href="chocopy_language_reference.pdf">fully specified</a> using formal grammar syntax, typing rules, and operational semantics. ChocoPy is used to teach <a target="_blank" href="https://sites.google.com/site/cs164fall2018/calendar-and-slides">CS 164 at UC Berkeley</a>. ChocoPy is designed by <a target="_blank" href="https://people.eecs.berkeley.edu/~rohanpadhye/">Rohan Padhye</a> and <a target="_blank" href="https://people.eecs.berkeley.edu/~ksen">Koushik Sen</a>.</p>
+<p>ChocoPy is a programming language designed to be used in compilers courses at an undergraduate level. ChocoPy is a restricted subset of <a href="https://www.python.org/downloads/release/python-360/">Python 3</a> that can easily be compiled to a target such as <a href="https://riscv.org">RISC-V</a>. The language is <a href="chocopy_language_reference.pdf">fully specified</a> using formal grammar, typing rules, and operational semantics. ChocoPy is used to teach <a href="https://sites.google.com/site/cs164fall2018/calendar-and-slides">CS 164 at UC Berkeley</a>. ChocoPy is designed by <a href="https://people.eecs.berkeley.edu/~rohanpadhye/">Rohan Padhye</a> and <a href="https://people.eecs.berkeley.edu/~ksen">Koushik Sen</a>.</p>
 
 <p>At a glance, ChocoPy is:</p>
 
 <ul>
 	<li><strong>Familiar</strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter. ChocoPy programs can also be edited using standard Python syntax highlighting.</li>
-	<li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a target="_blank" href="https://www.python.org/dev/peps/pep-0484/">type</a> <a target="_blank" href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The type system supports nominal subtyping.</li>
+	<li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a href="https://www.python.org/dev/peps/pep-0484/">type</a> <a href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The type system supports nominal subtyping.</li>
 	<li><strong>Concise</strong>: A full compiler for ChocoPy be implemented in about 12 weeks by undergraduate students of computer science. This can be a <a href="#testimonials">hugely rewarding exercise</a> for the students.</li>
 	<li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">language features</a> also lead to interesting implications for compiler design.</li>
 </ul>
@@ -56,24 +56,24 @@ print(contains([4, 8, 15, 16, 23], 42)) # Prints "False"
 <p>The following resources are available for conducting a compilers' course with ChocoPy:</p>
 
 <ul>
-	<li>A <a target="_blank" href="chocopy_language_reference.pdf">language reference manual</a>, complete with formal grammar, typing rules, and operational semantics.</li>
-	<li>An <a target="_blank" href="chocopy_implementation_guide.pdf">implementation guide</a> describing calling conventions and runtime support in RISC-V.</li>
+	<li>A <a href="chocopy_language_reference.pdf">language reference manual</a>, complete with formal grammar, typing rules, and operational semantics.</li>
+	<li>An <a href="chocopy_implementation_guide.pdf">implementation guide</a> describing calling conventions and runtime support in RISC-V.</li>
 	<li>A Java-based framework for conducting three Programming Assignments (PAs):
 		<ol>
-			<li><a target="_blank" href="https://github.com/cs164fall2018/pa1-chocopy-parser">PA1</a>: Lexing and Parsing ChocoPy using <a target="_blank" href="http://www.jflex.de">JFlex</a> and <a target="_blank" href="http://www2.cs.tum.edu/projects/cup">CUP</a></li>
-			<li><a target="_blank" href="https://github.com/cs164fall2018/pa2-chocopy-semantic-analysis">PA2</a>: Semantic anaysis and type checking on ASTs</li>
-			<li><a target="_blank" href="https://github.com/cs164fall2018/pa3-chocopy-code-generation">PA3</a>: Code generation from typed ASTs to <a target="_blank" href="https://riscv.org/specifications/">RV32IM assembly</a></li>
+			<li><a href="https://github.com/cs164fall2018/pa1-chocopy-parser">PA1</a>: Lexing and Parsing ChocoPy using <a href="http://www.jflex.de">JFlex</a> and <a href="http://www2.cs.tum.edu/projects/cup">CUP</a></li>
+			<li><a href="https://github.com/cs164fall2018/pa2-chocopy-semantic-analysis">PA2</a>: Semantic anaysis and type checking on ASTs</li>
+			<li><a href="https://github.com/cs164fall2018/pa3-chocopy-code-generation">PA3</a>: Code generation from typed ASTs to <a href="https://riscv.org/specifications/">RV32IM assembly</a></li>
 		</ol>
 
-		The framework uses <a target="_blank" href="https://json.org/">JSON</a> as an intermediate representation for piping results between assignments / compiler stages. The framework includes auto-grading support. All artifacts are platform independent and only require Java 8+ and Apache Maven.</li>
-	<li>A modified version of the <a target="_blank" href="https://github.com/chocopy/venus">Venus simulator</a> for executing RISC-V programs. Venus can be deployed to the web (for online debugging) or compiled to the JVM (for testing and auto-grading).</li>
+		The framework uses <a href="https://json.org/">JSON</a> as an intermediate representation for piping results between assignments / compiler stages. The framework includes auto-grading support. All artifacts are platform independent and only require Java 8+ and Apache Maven.</li>
+	<li>A modified version of the <a href="https://github.com/chocopy/venus">Venus simulator</a> for executing RISC-V programs. Venus can be deployed to the web (for online debugging) or compiled to the JVM (for testing and auto-grading).</li>
 	<li>A Java-based reference compiler that compiles ChocoPy programs to <em>auto-documented</em> RISC-V assembly. Students have access to a binary version of this compiler, for use in debugging their own assignments. The reference compiler also powers the online examples on this web page. The source code of the reference compiler <a href="#contact">can be made available to instructors</a>.</li>
 	</li>
 </ul>
 
 <h2 id="features">Language Features</h2>
 
-Here are some code examples demonstrating various features of ChocoPy. Edit and compile the programs below to observe the generated RISC-V assembly, which can itself be executed online. A detailed description of the ChocoPy language is available in the official <a target="_blank" href="chocopy_language_reference.pdf">language reference manual</a>.
+Here are some code examples demonstrating various features of ChocoPy. Edit and compile the programs below to observe the generated RISC-V assembly, which can itself be executed online. A detailed description of the ChocoPy language is available in the official <a href="chocopy_language_reference.pdf">language reference manual</a>.
 
 <h3>Static Type Checking</h3>
 <pre class="example"># A broken program
@@ -172,7 +172,7 @@ for num in [4, 8, 15, 16, 23, 42]:
 
 <h2 id="testimonials">Testimonials</h2>
 
-<p>Here's what students at <a target="_blank" href="https://eecs.berkeley.edu/">UC Berkeley</a> have to say (class of <a target="_blank" href="https://sites.google.com/site/cs164fall2018/course-info">CS 164 in Fall 2018</a>):</p>
+<p>Here's what students at <a href="https://eecs.berkeley.edu/">UC Berkeley</a> have to say (class of <a href="https://sites.google.com/site/cs164fall2018/course-info">CS 164 in Fall 2018</a>):</p>
 
 <blockquote>Chocopy was a very well done project and I think might have been one of the most
 satisfying CS course projects I have worked on in all of undergrad.</blockquote>
