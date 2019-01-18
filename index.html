@@ -34,7 +34,7 @@
 	<li><strong>A subset of <a target="_blank" href="https://www.python.org/downloads/release/python-360/">Python 3</a></strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter.</li>
 	<li><strong>Statically typed</strong>: ChocoPy uses Python 3 <a target="_blank" href="https://www.python.org/dev/peps/pep-0484/">type annotations</a> and is designed to be easily compiled.</li>
 	<li><strong>Concise</strong>: A full compiler be implemented in about 12 weeks by undergraduate students of computer science. Doing so for a relatively familiar language can be a <a href="#testimonials">hugely rewarding exercise</a> for students.</li>
-	<li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">features</a> also have interesting implications for compiler design.</li>
+	<li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">language features</a> also lead to interesting implications for compiler design.</li>
 </ul>
 
 <h2>Try It</h2>
@@ -60,27 +60,16 @@ print(is_prime(42))
 	<li>A <a target="_blank" href="chocopy_language_reference.pdf">language reference manual</a>, complete with formal grammar, typing rules, and operational semantics.</li>
 	<li>A Java-based framework for conducting three Programming Assignments (PAs):
 		<ol>
-			<li><a target="_blank" href="https://github.com/cs164fall2018/pa1-chocopy-parser">PA1</a>: Lexing and Parsing using <a target="_blank" href="http://www.jflex.de">JFlex</a> and <a target="_blank" href="http://www2.cs.tum.edu/projects/cup">CUP</a>. </li>
-			<li><a target="_blank" href="https://github.com/cs164fall2018/pa2-chocopy-semantic-analysis">PA2</a>: Semantic anaysis and type checking. </li>
-			<li><a target="_blank" href="https://github.com/cs164fall2018/pa3-chocopy-code-generation">PA3</a>: Code generation to <a target="_blank" href="https://riscv.org">RISC-V</a> assembly. </li>
+			<li><a target="_blank" href="https://github.com/cs164fall2018/pa1-chocopy-parser">PA1</a>: Lexing and Parsing using <a target="_blank" href="http://www.jflex.de">JFlex</a> and <a target="_blank" href="http://www2.cs.tum.edu/projects/cup">CUP</a></li>
+			<li><a target="_blank" href="https://github.com/cs164fall2018/pa2-chocopy-semantic-analysis">PA2</a>: Semantic anaysis and type checking </li>
+			<li><a target="_blank" href="https://github.com/cs164fall2018/pa3-chocopy-code-generation">PA3</a>: Code generation to <a target="_blank" href="https://riscv.org">RISC-V</a> assembly </li>
 		</ol>
 
-		The framework uses <a target="_blank" href="https://json.org/">JSON</a> as an intermediate representation for piping results between assignments / compiler stages. The packages include auto-grading support. All artifacts are platform independent and only require Java 8+ and Apache Maven.</li>
-	<li>A modified version of the <a target="_blank" href="https://github.com/chocopy/venus">Venus simulator</a> for executing RISC-V programs. Venus can be deployed to the web (for online debugging) or compiled to the JVM (for auto-grading).</li>
-	<li>A Java-based reference compiler for compiling ChocoPy programs to <em>automatically documented</em> RISC-V assembly. Students have access to a binary version of this compiler, for use in debugging their own assignments. The reference compiler also powers the online examples on this web page. The source code of the reference compiler <a href="#contact">can be made available to instructors</a>.</li>
+		The framework uses <a target="_blank" href="https://json.org/">JSON</a> as an intermediate representation for piping results between assignments / compiler stages. The framework includes auto-grading support. All artifacts are platform independent and only require Java 8+ and Apache Maven.</li>
+	<li>A modified version of the <a target="_blank" href="https://github.com/chocopy/venus">Venus simulator</a> for executing RISC-V programs. Venus can be deployed to the web (for online debugging) or compiled to the JVM (for testing and auto-grading).</li>
+	<li>A Java-based reference compiler that compiles ChocoPy programs to <em>auto-documented</em> RISC-V assembly. Students have access to a binary version of this compiler, for use in debugging their own assignments. The reference compiler also powers the online examples on this web page. The source code of the reference compiler <a href="#contact">can be made available to instructors</a>.</li>
 	</li>
 </ul>
-
-<h2 id="testimonials">Testimonials</h2>
-
-<p>Here's what students at UC Berkeley said after taking <a target="_blank" href="https://sites.google.com/site/cs164fall2018/course-info">CS 164 in Fall 2018</a>:</p>
-
-<blockquote>Chocopy was a very well done project and I think might have been one of the most
-satisfying CS course projects I have worked on in all of undergrad.</blockquote>
-
-<blockquote>I'm a big fan of the ChocoPy projects. I thought it was really nice to implement a subset of a language that I am already fairly familiar with, so that I could focus my attention on the compilers concepts instead of struggling to understand language quirks. I really liked the amount of freedom for design decisions given in project 2.</blockquote>
-
-<blockquote>Great class, one of my favourites at Berkeley as a fourth year</blockquote>
 
 <h2 id="features">Language Features</h2>
 
@@ -177,6 +166,22 @@ for num in [4, 8, 15, 16, 23, 42]:
     print(vec.capacity())
     
 </pre>
+
+
+<h2 id="testimonials">Testimonials</h2>
+
+<p>Here's what students at <a target="_blank" href="https://eecs.berkeley.edu/">UC Berkeley</a> have to say (class of <a target="_blank" href="https://sites.google.com/site/cs164fall2018/course-info">CS164 in Fall 2018</a>):</p>
+
+<blockquote>Chocopy was a very well done project and I think might have been one of the most
+satisfying CS course projects I have worked on in all of undergrad.</blockquote>
+
+<blockquote>I'm a big fan of the ChocoPy projects. I thought it was really nice to implement a subset of a language that I am already fairly familiar with, so that I could focus my attention on the compilers concepts instead of struggling to understand language quirks. I really liked the amount of freedom for design decisions given in project 2.</blockquote>
+
+<blockquote>I have really enjoyed the projects so far. Even though they take a long time, they have been a fun way to apply the course material and learn how compilers work. In both PA1 and PA2, it has been cool to see how implementing a set of comprehensive rules is powerful and general enough to handle the entire ChocoPy language. The projects are particularly interesting because they have been completely different from projects I have done in other CS courses.</blockquote>
+
+<blockquote>Great class, one of my favourites at Berkeley as a fourth year</blockquote>
+
+<blockquote>[...] The projects in the class were extremely well organized and although very challenging, were certainly the most enjoyable to do in all the classes I've taken. Github classroom, maven, and other infrastructure made starting, testing and submitting very straightforward, and the tasks in the project itself as well as the related documentation made them very effective at teaching me language design and implementation.</blockquote>
 
 <h2 id="contact">Contact for Instructors</h2>
 
