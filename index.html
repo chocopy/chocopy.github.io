@@ -2,24 +2,18 @@
 <html>
   <head>
     <title>ChocoPy: A Language for Compilers Education</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/sakura.css" />
     <script
 	  src="https://code.jquery.com/jquery-3.3.1.min.js"
 	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	  crossorigin="anonymous"></script>
 	<script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
 	<style>
-		.compile-editor { 
+		.example { 
 		  border: 1px solid black;
 		  width: 50em;
 		  height: 20em;
-		}
-
-		.compile-button {
-			border: 1px solid black;
-			margin-bottom: 5px;
-			padding: 5px;
-			background: #BBBBFF;
-			font-weight: bold;
 		}
 
 		.compile-error-marker {
@@ -29,16 +23,23 @@
 	</style>
   </head>
   <body>
-    <h1>ChocoPy</h1>
 
-    <p>ChocoPy is a language designed for teaching compilers courses at an undergraduate level. ChocoPy is used to teach <a href="https://sites.google.com/site/cs164fall2018">CS 164 at UC Berkeley</a>.</p>
+<h1>ChocoPy</h1>
 
-    <p>This website is currently under construction.</p>
+<p>ChocoPy is a programming language designed for teaching compiler development at an undergraduate level. ChocoPy is used to teach <a target="_blank" href="https://sites.google.com/site/cs164fall2018/course-info">CS 164 at UC Berkeley</a>. ChocoPy was created by <a target="_blank" href="https://people.eecs.berkeley.edu/~rohanpadhye/">Rohan Padhye</a> and <a target="_blank" href="https://people.eecs.berkeley.edu/~ksen">Koushik Sen</a>.</p>
 
-    <h2>Try ChocoPy</h2>
+<p>At a glance, ChocoPy is:</p>
 
-<button id="tryit-compile" class="compile-button">Compile to RISC-V</button>
-	<div id="tryit-editor" class="compile-editor"># Compute Factorial
+<ul>
+	<li><strong>A subset of <a target="_blank" href="https://www.python.org/downloads/release/python-360/">Python 3</a></strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter.</li>
+	<li><strong>Statically typed</strong>: ChocoPy uses Python 3 <a target="_blank" href="https://www.python.org/dev/peps/pep-0484/">type annotations</a> and is designed to be easily compiled.</li>
+	<li><strong>Concise</strong>: A full compiler be implemented in about 12 weeks by undergraduate students of computer science. Doing so for a relatively familiar language can be a <a href="#testimonials">hugely rewarding exercise</a> for students.</li>
+	<li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">features</a> also have interesting implications for compiler design.</li>
+</ul>
+
+<h2>Try It</h2>
+
+<pre class="example"># Compute Factorial
 def factorial(n:int) -> int:
   if n <= 1:
     return 1
@@ -46,7 +47,137 @@ def factorial(n:int) -> int:
     return n * factorial(n - 1)
 
 print(factorial(5))
-</div>
+</pre>
+
+<h2 id="resources">Teaching Resources</h2>
+
+<p>The following resources are available for conducting a compilers' course with ChocoPy:</p>
+
+<ul>
+	<li>A <a target="_blank" href="chocopy_language_reference.pdf">language reference manual</a>, complete with formal grammar, typing rules, and operational semantics.</li>
+	<li>A Java-based <a target="_blank" href="chocopy-ref.jar">reference compiler</a> for compiling ChocoPy to (auto-commented) RISC-V assembly. The source code of the reference compiler can be made available for instructors.</li>
+	<li>A Java-based framework for conducting three Programming Assignments (PAs):
+		<ol>
+			<li>Lexing and Parsing using <a target="_blank" href="http://www.jflex.de">JFlex</a> and <a target="_blank" href="http://www2.cs.tum.edu/projects/cup">CUP</a>. </li>
+			<li>Semantic anaysis and type checking. </li>
+			<li>Code generation to <a target="_blank" href="https://riscv.org">RISC-V</a> assembly. </li>
+		</ol>
+
+		The assignments use a JSON-based intermediate representation and include auto-grading support. </li>
+	<li>RISC-V programs are executed in a modified version of the <a target="_blank" href="https://github.com/chocopy/venus">Venus simulator</a>, which was also developed at UC Berkeley.</li>
+	</li>
+</ul>
+
+<h2 id="testimonials">Testimonials</h2>
+
+<p>Here's what students at UC Berkeley said after taking <a target="_blank" href="https://sites.google.com/site/cs164fall2018/course-info">CS 164 in Fall 2018</a>:</p>
+
+<blockquote>Chocopy was a very well done project and I think might have been one of the most
+satisfying CS course projects I have worked on in all of undergrad.</blockquote>
+
+<blockquote>I'm a big fan of the ChocoPy projects. I thought it was really nice to implement a subset of a language that I am already fairly familiar with, so that I could focus my attention on the compilers concepts instead of struggling to understand language quirks. I really liked the amount of freedom for design decisions given in project 2. <br /><br /> The only minor negatives for my project experiences was that I didn't feel like we actually implemented much for project 1.</blockquote>
+
+<blockquote>Great class, one of my favourites at Berkeley as a fourth year</blockquote>
+
+<h2 id="features">Language Features</h2>
+
+Below are some code examples demonstrating various language features of ChocoPy. Edit and compile the programs to observe the generated RISC-V assembly, which can then be executed online as well. A detailed description of the ChocoPy language is available in the official <a target="_blank" href="chocopy_language_reference.pdf">language reference manual</a>.
+
+<h3>Static Type Checking</h3>
+<pre class="example"># A broken program
+def is_even(x:int) -> bool:
+	if x % 2 == 1:
+		return 0      # FIXME
+	else:
+		return True
+
+print(is_even("3"))   # FIXME
+</pre>
+
+
+<h3>Nested functions with global/nonlocal variables</h3>
+
+<pre class="example"># Compute x**y
+def exp(x: int, y: int) -> int:
+	a: int = 0
+	global invocations
+
+	def f(i: int) -> int:
+		nonlocal a
+		def geta() -> int:
+			return a
+		if i <= 0:
+			return geta()
+		else:
+			a = a * x
+			return f(i-1)
+	a = 1
+	invocations = invocations + 1
+	return f(y)
+
+invocations:int = 0
+print(exp(2, 10))
+print(exp(3, 3))
+print(invocations)
+</pre>
+
+<h3>Lists, classes, and dynamic dispatch</h3>
+
+<pre class="example"># A resizable list of integers
+class Vector(object):
+    # Attributes
+    items: [int] = None
+    size: int = 0
+
+    # Constructor
+    def __init__(self:"Vector") -> object:
+        self.items = [0]
+
+    # Returns current capacity
+    def capacity(self:"Vector") -> int:
+        return len(self.items)
+
+    # Increases capacity of vector by one element
+    def increase_capacity(self:"Vector") -> int:
+        self.items = self.items + [0]
+        return self.capacity()
+
+    # Appends one item to end of vector
+    def append(self:"Vector", item: int) -> object:
+        if self.size == self.capacity():
+            self.increase_capacity()
+
+        self.items[self.size] = item
+        self.size = self.size + 1
+
+# A faster (but more memory-consuming) implementation of vector
+class DoublingVector(Vector):
+    doubling_limit:int = 16
+
+    # Overriding to do fewer resizes
+    def increase_capacity(self:"DoublingVector") -> int:
+        if (self.capacity() <= self.doubling_limit // 2):
+            self.items = self.items + self.items
+        else:
+            # If doubling limit has been reached, fall back to
+            # standard capacity increases
+            self.items = self.items + [0]
+        return self.capacity()
+        
+vec:Vector = None
+num:int = 0
+
+# Create a vector and populate it with The Numbers
+vec = DoublingVector()
+for num in [4, 8, 15, 16, 23, 42]:
+    vec.append(num)
+    print(vec.capacity())
+    
+</pre>
+
+<h2 id="contact">Contact for Instructors</h2>
+
+<p>Want to use ChocoPy to run your own compilers' course? Send an email to <a href="mailto:instructors@chocopy.org">instructors@chocopy.org</a>.</p>
 
 <script>
 	var baseUrl = "https://lobpsxdn4g.execute-api.us-east-2.amazonaws.com"
@@ -54,12 +185,14 @@ print(factorial(5))
 	var compileService = baseUrl + "/" + stage + "/compile";
 	var Range = require('ace/range').Range;
 
-	function makeEditor(x) {
-		var editorElem = x + "-editor";
-		var buttonElem = x + "-compile";
-	    var editor = ace.edit(editorElem, {
+	function makeEditor(example) {
+		$(example).wrap("<div class='example-container'></div>");
+		var compileButton = $("<button class='compile-button'>Compile to RISC-V</button>");
+		$(example).parent().prepend(compileButton);
+	    var editor = ace.edit(example, {
 	    	theme: "ace/theme/github",
 	        mode: "ace/mode/python",
+  			fontSize: "1em"
 	    });
 
 
@@ -74,7 +207,7 @@ print(factorial(5))
 	    	errorMarkers.length = 0;
 	    });
 
-	    $("#"+buttonElem).click(() => {
+	    compileButton.click(() => {
 	    	var code = editor.getValue();
 	    	var resultWindow = window.open('venus.html' , '_blank');
 	    	if (resultWindow == null) {
@@ -111,7 +244,7 @@ print(factorial(5))
 		    				errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", false));
 
 		    				annotations.push({
-		    					row: startLine,
+		    					row: Math.min(Math.max(0, startLine), editor.session.getLength()-1),
 		    					text: msg,
 		    					type: "error"
 		    				});
@@ -131,7 +264,7 @@ print(factorial(5))
 	    })
 	}
 
-	makeEditor("tryit")
+	$(".example").each((i, e) => makeEditor(e))
 </script>
 
   </body>
