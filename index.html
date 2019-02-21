@@ -26,13 +26,13 @@
 
 <h1>ChocoPy</h1>
 
-<p>ChocoPy is a programming language designed to be used in compilers courses at an undergraduate level. ChocoPy is a restricted subset of <a href="https://www.python.org/downloads/release/python-360/">Python 3</a> that can easily be compiled to a target such as <a href="https://riscv.org">RISC-V</a>. The language is <a href="chocopy_language_reference.pdf">fully specified</a> using formal grammar, typing rules, and operational semantics. ChocoPy is used to teach <a href="https://sites.google.com/site/cs164fall2018/calendar-and-slides">CS 164 at UC Berkeley</a>. ChocoPy is designed by <a href="https://people.eecs.berkeley.edu/~rohanpadhye/">Rohan Padhye</a> and <a href="https://people.eecs.berkeley.edu/~ksen">Koushik Sen</a>.</p>
+<p>ChocoPy is a programming language designed for classroom use in undergraduate compilers courses. ChocoPy is a restricted subset of <a href="https://www.python.org/downloads/release/python-360/">Python 3</a>, which can easily be compiled to a target such as <a href="https://riscv.org">RISC-V</a>. The language is <a href="chocopy_language_reference.pdf">fully specified</a> using formal grammar, typing rules, and operational semantics. ChocoPy is used to teach <a href="https://sites.google.com/site/cs164fall2018/calendar-and-slides">CS 164 at UC Berkeley</a>. ChocoPy is designed by <a href="https://people.eecs.berkeley.edu/~rohanpadhye/">Rohan Padhye</a> and <a href="https://people.eecs.berkeley.edu/~ksen">Koushik Sen</a>.</p>
 
 <p>At a glance, ChocoPy is:</p>
 
 <ul>
 	<li><strong>Familiar</strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter. ChocoPy programs can also be edited using standard Python syntax highlighting.</li>
-	<li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a href="https://www.python.org/dev/peps/pep-0484/">type</a> <a href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The type system supports nominal subtyping.</li>
+	<li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a href="https://www.python.org/dev/peps/pep-0484/">type</a> <a href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The <a href="chocopy_language_reference.pdf">type system</a> supports nominal subtyping.</li>
 	<li><strong>Concise</strong>: A full compiler for ChocoPy be implemented in about 12 weeks by undergraduate students of computer science. This can be a hugely rewarding exercise for the students.</li>
 	<li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">language features</a> also lead to interesting implications for compiler design.</li>
 </ul>
@@ -209,7 +209,7 @@ for num in [4, 8, 15, 16, 23, 42]:
 	    		console.error("Could not open new window...");
 	    		return; // Cannot show result
 	    	}
-	    	resultWindow.onload = () => resultWindow.codeMirror.setValue("# Compiling...");
+	    	resultWindow.onload = () => resultWindow.codeMirror.setValue("# Compiling... Please be patient. This can take a few seconds.");
 	    	
 	    	$.ajax({
 	    		url: compileService, 
