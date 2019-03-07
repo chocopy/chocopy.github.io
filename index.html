@@ -5,22 +5,22 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/sakura.css" />
     <script
-	  src="https://code.jquery.com/jquery-3.3.1.min.js"
-	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	  crossorigin="anonymous"></script>
-	<script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
-	<style>
-		.example { 
-		  border: 1px solid black;
-		  width: 50em;
-		  height: 20em;
-		}
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .example { 
+          border: 1px solid black;
+          width: 50em;
+          height: 20em;
+        }
 
-		.compile-error-marker {
-			position: absolute;
-			background-color: rgba(255, 200, 200, 0.3);
-		}
-	</style>
+        .compile-error-marker {
+            position: absolute;
+            background-color: rgba(255, 200, 200, 0.3);
+        }
+    </style>
   </head>
   <body>
 
@@ -33,10 +33,10 @@
 <p>At a glance, ChocoPy is:</p>
 
 <ul>
-	<li><strong>Familiar</strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter. ChocoPy programs can also be edited using standard Python syntax highlighting.</li>
-	<li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a href="https://www.python.org/dev/peps/pep-0484/">type</a> <a href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The <a href="chocopy_language_reference.pdf">type system</a> supports nominal subtyping.</li>
-	<li><strong>Concise</strong>: A full compiler for ChocoPy be implemented in about 12 weeks by undergraduate students of computer science. This can be a hugely rewarding exercise for the students.</li>
-	<li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">language features</a> also lead to interesting implications for compiler design.</li>
+    <li><strong>Familiar</strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter. ChocoPy programs can also be edited using standard Python syntax highlighting.</li>
+    <li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a href="https://www.python.org/dev/peps/pep-0484/">type</a> <a href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The <a href="chocopy_language_reference.pdf">type system</a> supports nominal subtyping.</li>
+    <li><strong>Concise</strong>: A full compiler for ChocoPy be implemented in about 12 weeks by undergraduate students of computer science. This can be a hugely rewarding exercise for the students.</li>
+    <li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">language features</a> also lead to interesting implications for compiler design.</li>
 </ul>
 
 <h2>Try ChocoPy</h2>
@@ -61,19 +61,19 @@ else:
 <p>The following resources are available for conducting a compilers course with ChocoPy:</p>
 
 <ul>
-	<li>A <a href="chocopy_language_reference.pdf">language reference manual</a>, complete with formal grammar, typing rules, and operational semantics.</li>
-	<li>An <a href="chocopy_implementation_guide.pdf">implementation guide</a> describing calling conventions and runtime support in RISC-V.</li>
-	<li>A Java-based framework for conducting three Programming Assignments (PAs):
-		<ol>
-			<li><a href="https://github.com/cs164fall2018/pa1-chocopy-parser">PA1</a>: Lexing and Parsing ChocoPy using <a href="http://www.jflex.de">JFlex</a> and <a href="http://www2.cs.tum.edu/projects/cup">CUP</a></li>
-			<li><a href="https://github.com/cs164fall2018/pa2-chocopy-semantic-analysis">PA2</a>: Semantic analysis and type checking on ASTs</li>
-			<li><a href="https://github.com/cs164fall2018/pa3-chocopy-code-generation">PA3</a>: Code generation from typed ASTs to <a href="https://riscv.org/specifications/">RV32IM assembly</a></li>
-		</ol>
+    <li>A <a href="chocopy_language_reference.pdf">language reference manual</a>, complete with formal grammar, typing rules, and operational semantics.</li>
+    <li>An <a href="chocopy_implementation_guide.pdf">implementation guide</a> describing calling conventions and runtime support in RISC-V.</li>
+    <li>A Java-based framework for conducting three Programming Assignments (PAs):
+        <ol>
+            <li><a href="https://github.com/cs164fall2018/pa1-chocopy-parser">PA1</a>: Lexing and Parsing ChocoPy using <a href="http://www.jflex.de">JFlex</a> and <a href="http://www2.cs.tum.edu/projects/cup">CUP</a></li>
+            <li><a href="https://github.com/cs164fall2018/pa2-chocopy-semantic-analysis">PA2</a>: Semantic analysis and type checking on ASTs</li>
+            <li><a href="https://github.com/cs164fall2018/pa3-chocopy-code-generation">PA3</a>: Code generation from typed ASTs to <a href="https://riscv.org/specifications/">RV32IM assembly</a></li>
+        </ol>
 
-		The framework uses <a href="https://json.org/">JSON</a> as an intermediate representation for piping results between compiler stages. The framework includes auto-grading support. All artifacts are platform independent and only require Java 8+ and Apache Maven.</li>
-	<li>A modified version of the <a href="https://github.com/chocopy/venus">Venus simulator</a> for executing RISC-V programs. Venus can be deployed to the web (for online debugging) or compiled to the JVM (for testing and auto-grading).</li>
-	<li>A Java-based reference compiler that compiles ChocoPy programs to <em>auto-documented</em> RISC-V assembly. Students have access to a binary version of this compiler, for use in debugging their own assignments. The reference compiler also powers the online examples on this web page. The source code of the reference compiler <a href="#contact">can be made available to instructors</a>.</li>
-	</li>
+        The framework uses <a href="https://json.org/">JSON</a> as an intermediate representation for piping results between compiler stages. The framework includes auto-grading support. All artifacts are platform independent and only require Java 8+ and Apache Maven.</li>
+    <li>A modified version of the <a href="https://github.com/chocopy/venus">Venus simulator</a> for executing RISC-V programs. Venus can be deployed to the web (for online debugging) or compiled to the JVM (for testing and auto-grading).</li>
+    <li>A Java-based reference compiler that compiles ChocoPy programs to <em>auto-documented</em> RISC-V assembly. Students have access to a binary version of this compiler, for use in debugging their own assignments. The reference compiler also powers the online examples on this web page. The source code of the reference compiler <a href="#contact">can be made available to instructors</a>.</li>
+    </li>
 </ul>
 
 <h2 id="features">Language Features</h2>
@@ -83,10 +83,10 @@ Here are some code examples demonstrating various features of ChocoPy. Edit and 
 <h3>Static Type Checking</h3>
 <pre class="example"># A broken program
 def is_even(x:int) -> bool:
-	if x % 2 == 1:
-		return 0      # FIXME
-	else:
-		return True
+    if x % 2 == 1:
+        return 0      # FIXME
+    else:
+        return True
 
 print(is_even("3"))   # FIXME
 </pre>
@@ -96,21 +96,21 @@ print(is_even("3"))   # FIXME
 
 <pre class="example"># Compute x**y
 def exp(x: int, y: int) -> int:
-	a: int = 0
-	global invocations  # Count calls to this function
+    a: int = 0
+    global invocations  # Count calls to this function
 
-	def f(i: int) -> int:
-		nonlocal a
-		def geta() -> int:
-			return a
-		if i <= 0:
-			return geta()
-		else:
-			a = a * x
-			return f(i-1)
-	a = 1
-	invocations = invocations + 1
-	return f(y)
+    def f(i: int) -> int:
+        nonlocal a
+        def geta() -> int:
+            return a
+        if i <= 0:
+            return geta()
+        else:
+            a = a * x
+            return f(i-1)
+    a = 1
+    invocations = invocations + 1
+    return f(y)
 
 invocations:int = 0
 print(exp(2, 10))
@@ -180,94 +180,94 @@ for num in [4, 8, 15, 16, 23, 42]:
 <p>Want to use ChocoPy to run your own compilers course? Send an email to <a href="mailto:instructors@chocopy.org">instructors@chocopy.org</a>.</p>
 
 <script>
-	var baseUrl = "https://lobpsxdn4g.execute-api.us-east-2.amazonaws.com"
-	var stage = "beta";
-	var compileService = baseUrl + "/" + stage + "/compile";
-	var Range = require('ace/range').Range;
+    var baseUrl = "https://lobpsxdn4g.execute-api.us-east-2.amazonaws.com"
+    var stage = "beta";
+    var compileService = baseUrl + "/" + stage + "/compile";
+    var Range = require('ace/range').Range;
 
-	function makeEditor(example) {
-		$(example).wrap("<div class='example-container'></div>");
-		var compileButton = $("<button class='compile-button'>Compile to RISC-V</button>");
-		$(example).parent().prepend(compileButton);
-	    var editor = ace.edit(example, {
-	    	theme: "ace/theme/github",
-	        mode: "ace/mode/python",
-  			fontSize: "1em"
-	    });
-
-
-	    var errorMarkers = []
+    function makeEditor(example) {
+        $(example).wrap("<div class='example-container'></div>");
+        var compileButton = $("<button class='compile-button'>Compile to RISC-V</button>");
+        $(example).parent().prepend(compileButton);
+        var editor = ace.edit(example, {
+            theme: "ace/theme/github",
+            mode: "ace/mode/python",
+              fontSize: "1em"
+        });
 
 
-	    editor.on('change', () => {
-	    	editor.session.clearAnnotations();
-	    	for (var marker of errorMarkers) {
-	    		editor.session.removeMarker(marker);
-	    	}
-	    	errorMarkers.length = 0;
-	    });
+        var errorMarkers = []
 
-	    compileButton.click(() => {
-	    	var code = editor.getValue();
-	    	var resultWindow = window.open('venus.html' , '_blank');
-	    	if (resultWindow == null) {
-	    		console.error("Could not open new window...");
-	    		return; // Cannot show result
-	    	}
-	    	resultWindow.onload = () => resultWindow.codeMirror.setValue("# Compiling... Please be patient. This can take a few seconds.\n" +
-	    		"# (The first compilation takes the longest)");
-	    	
-	    	$.ajax({
-	    		url: compileService, 
-	    		type: "POST",
-  				contentType: "application/json; charset=utf-8",
-  				dataType: "json",
-	    		data: JSON.stringify({input: code}), 
-	    		success: function(result) {
-		    		if (result.asm) {
-		    			var asm = result.asm;
-		    			console.log(resultWindow.codeMirror);
-						//resultWindow.onload = () => {
-							resultWindow.codeMirror.setValue("# Compiled ChocoPy Program to RISC-V assembly\n" +
-							"# Execute (run or step-through) using the 'Simulator' tab above \n" +
-							"# Output will appear on the bottom-left of the simulator\n " + asm);
-						//}
-		    		} else if (result.errors) {
-		    			resultWindow.close();
-		    			var annotations = []
 
-		    			for (var error of result.errors) {
-		    				var loc = error.location;
-		    				var msg = error.message;
-		    				var startLine = loc[0] - 1;
-		    				var startCol = loc[1] - 1;
-		    				var endLine = loc[2] - 1;
-		    				var endCol = loc[3] - 1;
-		    				var range = new Range(startLine, startCol, endLine, endCol+1);
-		    				errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", true));
+        editor.on('change', () => {
+            editor.session.clearAnnotations();
+            for (var marker of errorMarkers) {
+                editor.session.removeMarker(marker);
+            }
+            errorMarkers.length = 0;
+        });
 
-		    				annotations.push({
-		    					row: Math.min(Math.max(0, startLine), editor.session.getLength()-1),
-		    					text: msg,
-		    					type: "error"
-		    				});
-		    			}
+        compileButton.click(() => {
+            var code = editor.getValue();
+            var resultWindow = window.open('venus.html' , '_blank');
+            if (resultWindow == null) {
+                console.error("Could not open new window...");
+                return; // Cannot show result
+            }
+            resultWindow.onload = () => resultWindow.codeMirror.setValue("# Compiling... Please be patient. This can take a few seconds.\n" +
+                "# (The first compilation takes the longest)");
+            
+            $.ajax({
+                url: compileService, 
+                type: "POST",
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                data: JSON.stringify({input: code}), 
+                success: function(result) {
+                    if (result.asm) {
+                        var asm = result.asm;
+                        console.log(resultWindow.codeMirror);
+                        //resultWindow.onload = () => {
+                            resultWindow.codeMirror.setValue("# Compiled ChocoPy Program to RISC-V assembly\n" +
+                            "# Execute (run or step-through) using the 'Simulator' tab above \n" +
+                            "# Output will appear on the bottom-left of the simulator\n " + asm);
+                        //}
+                    } else if (result.errors) {
+                        resultWindow.close();
+                        var annotations = []
 
-		    			editor.session.setAnnotations(annotations);
-		    		} else {
-		    			resultWindow.close();
-		    			console.error(result);
-		    		}
-		    	}, 
-		    	fail: () => {
-		    		resultWindow.close();
-		    		alert("Request to compile service failed :-(");
-		    	}
-	    	});
-	    })
-	}
+                        for (var error of result.errors) {
+                            var loc = error.location;
+                            var msg = error.message;
+                            var startLine = loc[0] - 1;
+                            var startCol = loc[1] - 1;
+                            var endLine = loc[2] - 1;
+                            var endCol = loc[3] - 1;
+                            var range = new Range(startLine, startCol, endLine, endCol+1);
+                            errorMarkers.push(editor.session.addMarker(range, "compile-error-marker", "text", true));
 
-	$(".example").each((i, e) => makeEditor(e))
+                            annotations.push({
+                                row: Math.min(Math.max(0, startLine), editor.session.getLength()-1),
+                                text: msg,
+                                type: "error"
+                            });
+                        }
+
+                        editor.session.setAnnotations(annotations);
+                    } else {
+                        resultWindow.close();
+                        console.error(result);
+                    }
+                }, 
+                fail: () => {
+                    resultWindow.close();
+                    alert("Request to compile service failed :-(");
+                }
+            });
+        })
+    }
+
+    $(".example").each((i, e) => makeEditor(e))
 </script>
 
   </body>
