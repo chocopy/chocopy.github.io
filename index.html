@@ -214,7 +214,8 @@ for num in [4, 8, 15, 16, 23, 42]:
 	    		console.error("Could not open new window...");
 	    		return; // Cannot show result
 	    	}
-	    	resultWindow.onload = () => resultWindow.codeMirror.setValue("# Compiling... Please be patient. This can take a few seconds.");
+	    	resultWindow.onload = () => resultWindow.codeMirror.setValue("# Compiling... Please be patient. This can take a few seconds.\n" +
+	    		"# (The first compilation takes the longest)");
 	    	
 	    	$.ajax({
 	    		url: compileService, 
@@ -227,7 +228,9 @@ for num in [4, 8, 15, 16, 23, 42]:
 		    			var asm = result.asm;
 		    			console.log(resultWindow.codeMirror);
 						//resultWindow.onload = () => {
-							resultWindow.codeMirror.setValue("# Compiled ChocoPy Program in RISC-V assembly -- Run using the 'Simulator' tab above\n" + asm);
+							resultWindow.codeMirror.setValue("# Compiled ChocoPy Program to RISC-V assembly\n" +
+							"# Execute (run or step-through) using the 'Simulator' tab above \n" +
+							"# Output will appear on the bottom-left of the simulator\n " + asm);
 						//}
 		    		} else if (result.errors) {
 		    			resultWindow.close();
