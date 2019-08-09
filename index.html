@@ -236,7 +236,7 @@ for num in [4, 8, 15, 16, 23, 42]:
                         resultWindow.close();
                         var annotations = []
 
-                        for (var error of result.errors) {
+                        for (var error of result.errors.errors) { /* TODO: Unwrap extra errors in the AST node hierarchy */
                             var loc = error.location;
                             var msg = error.message;
                             var startLine = loc[0] - 1;
