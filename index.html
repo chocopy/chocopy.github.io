@@ -209,7 +209,7 @@ for num in [4, 8, 15, 16, 23, 42]:
 
         compileButton.click(() => {
             var code = editor.getValue();
-            var resultWindow = window.open('venus.html' , '_blank');
+            var resultWindow = window.open('venus.html?v=0.2.4' , '_blank');
             if (resultWindow == null) {
                 console.error("Could not open new window...");
                 return; // Cannot show result
