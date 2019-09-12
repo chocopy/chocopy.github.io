@@ -35,9 +35,11 @@
 <ul>
     <li><strong>Familiar</strong>: ChocoPy programs can be executed directly in a Python (3.6+) interpreter. ChocoPy programs can also be edited using standard Python syntax highlighting.</li>
     <li><strong>Safe</strong>: ChocoPy uses Python 3.6 <a href="https://www.python.org/dev/peps/pep-0484/">type</a> <a href="https://www.python.org/dev/peps/pep-0526/">annotations</a> to enforce static type checking. The <a href="chocopy_language_reference.pdf">type system</a> supports nominal subtyping.</li>
-    <li><strong>Concise</strong>: A full compiler for ChocoPy be implemented in about 12 weeks by undergraduate students of computer science. This can be a hugely rewarding exercise for the students.</li>
+    <li><strong>Concise</strong>: A full compiler for ChocoPy be implemented in about 12 weeks by undergraduate students of computer science. This can be a hugely rewarding exercise for students.</li>
     <li><strong>Expressive</strong>: One can write non-trivial ChocoPy programs using lists, classes, and nested functions. Such <a href="#features">language features</a> also lead to interesting implications for compiler design.</li>
 </ul>
+
+<p><strong>Bonus</strong>: Due to static type safety and ahead-of-time compilation, most student implementations outperform the reference Python implementation on non-trivial benchmarks.</p>
 
 <h2>Try ChocoPy</h2>
 
@@ -65,7 +67,7 @@ else:
     <li>An <a href="chocopy_implementation_guide.pdf">implementation guide</a> describing calling conventions and runtime support in RISC-V.</li>
     <li>A Java-based framework for conducting three Programming Assignments (PAs):
         <ol>
-            <li>Lexing and Parsing ChocoPy using <a href="http://www.jflex.de">JFlex</a> and <a href="http://www2.cs.tum.edu/projects/cup">CUP</a></li>
+            <li>Lexing and Parsing ChocoPy into Abstract Syntax Trees (ASTs)</li>
             <li>Semantic analysis and type checking on ASTs</li>
             <li>Code generation from typed ASTs to <a href="https://riscv.org/specifications/">RV32IM assembly</a></li>
         </ol>
